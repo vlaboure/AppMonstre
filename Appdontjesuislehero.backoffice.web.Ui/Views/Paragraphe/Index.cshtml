@@ -1,0 +1,30 @@
+﻿@using Appdontjesuislehero.Core.Data.Models
+@model List<Paragraphe>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div class="container md-8" style="text-align :center ">
+    <h2>@ViewBag.Title</h2>
+    <div class="row justify-content-center">
+        <a class="btn btn-primary btn-lg active row justify-content-center" asp-controller="Paragraphe" asp-action="Create">Nouveau paragraphe</a>
+    </div>
+    <div class="row">
+        @foreach(var paragraphe in Model)
+        {
+            <a href="#" class="card border m-2 text-center" style="width:7rem;">
+                <div class="card-body">
+                    <div>@paragraphe.Titre</div>
+                    <div>@paragraphe.Description</div>
+                </div>
+
+            </a>
+        }
+        <div class="col-md-4">
+
+        </div>
+    </div>
+</div>
+

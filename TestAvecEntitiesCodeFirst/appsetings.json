@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultContext": "Server=VINCENT-PC\\SQLEXPRESS;Database=JeuDontJeSuisLeHero.dev;Trusted_Connection=True;"
+  }
+}
