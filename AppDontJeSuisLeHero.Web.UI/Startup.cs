@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Appdontjesuislehero.Core.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +32,9 @@ namespace AppDontJeSuisLeHero.Web.UI
             //démarrage du service DbContext mode Sql Serveur
             //ServiceLifeTime.Scoped===>nlle instance à chaque requette
             //ServiceLifeTime.singleton===>nlle instance à chaque requette
-            services.AddDbContext<DefaultContext>(options => options.UseSqlServer(connectionString),ServiceLifetime.Scoped);
+        
+            services.AddDbContext<DefaultContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Scoped);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,15 +49,17 @@ namespace AppDontJeSuisLeHero.Web.UI
                 app.UseExceptionHandler("/Home/Error");
             }
             //mvc 3************************
-            app.UseStaticFiles();                        
+            app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
             //mvc 3************************
             app.UseEndpoints(endpoints =>
-            {
-                    endpoints.MapControllerRoute(
+            {              
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
                     endpoints.MapControllerRoute(
                     name: "Aventure",
                     pattern: "mes-aventures",

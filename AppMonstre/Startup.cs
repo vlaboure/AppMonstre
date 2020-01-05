@@ -41,7 +41,7 @@ namespace AppMonstre
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCookiePolicy();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
